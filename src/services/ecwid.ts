@@ -25,9 +25,10 @@ export const getProducts = async (categoryId?: string): Promise<ProductsItem[]> 
   return data.items
 }
 
-export const getProductById = async (id: string | number): Promise<ProductsItem> => {
+export const getProductById = async (id: string | number): Promise<Product> => {
   const params = new URLSearchParams({
-    responseFields: 'id,name,price,defaultDisplayedPriceFormatted,media(images)'
+    responseFields:
+      'id,name,description,price,defaultDisplayedPriceFormatted,media(images(id,image400pxUrl,image1500pxUrl))'
   }).toString()
 
   const request = new Request(`${import.meta.env.VITE_STORE_API_URL}/products/${id}?${params}`, {
@@ -95,11 +96,15 @@ export interface ProductsItem {
       // image160pxUrl: string
       image400pxUrl: string
       // image800pxUrl: string
-      // image1500pxUrl: string
+      image1500pxUrl: string
       // imageOriginalUrl: string
       isMain: boolean
     }>
   }
+}
+
+export interface Product extends ProductsItem {
+  description: string
 }
 
 export interface CategoriesItem {

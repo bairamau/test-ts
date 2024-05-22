@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views//HomeView.vue'
 import ProductView from '@/views/ProductView.vue'
 import CategoryView from '@/views/CategoryView.vue'
-import { getProducts, getCategories } from '@/services/ecwid'
+import { getProducts, getCategories, getProductById } from '@/services/ecwid'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,7 +48,11 @@ const router = createRouter({
         id: route.params.id,
         product: route.meta.product
       }),
-      component: ProductView
+      component: ProductView,
+      beforeEnter: async (to) => {
+        if (typeof to.params.id !== 'string') throw new Error('repeated id param')
+        to.meta.product = await getProductById(to.params.id)
+      }
     }
   ]
 })
