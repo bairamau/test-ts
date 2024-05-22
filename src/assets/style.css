@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Futura';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/futura_regular.woff2');
+  }
+
+  @font-face {
+    font-family: 'Futura';
+    font-style: normal;
+    font-weight: 700;
+    src: url('/futura_bold.woff2');
+  }
+
+  html {
+    /* replace with apply */
+    font-family: 'Futura', system-ui, sans-serif;
+  }
+
+  html,
+  body {
+    height: 100%;
+    @apply text-black;
+  }
+}
