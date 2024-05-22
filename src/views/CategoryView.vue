@@ -2,7 +2,12 @@
 import CategoryCard from '@/components/CategoryCard.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import { type CategoriesItem, type ProductsItem } from '@/services/ecwid'
-const props = defineProps<{ id: string; categories: CategoriesItem[]; products: ProductsItem[] }>()
+const props = defineProps<{
+  id: string
+  categories: CategoriesItem[]
+  products: ProductsItem[]
+  addProduct: (id: number, quantity: number) => void
+}>()
 const category = props.categories.find((c) => c.id === Number(props.id))!
 const subCategories = props.categories.filter((c) => c.parentId === category.id)
 const relevantProducts = props.products.filter((p) => p.categoryIds.includes(category.id))
@@ -39,6 +44,7 @@ const relevantProducts = props.products.filter((p) => p.categoryIds.includes(cat
           :title="p.name"
           :price="p.price"
           :src="p.media.images[0].image400pxUrl"
+          @add="addProduct(p.id, 1)"
         />
       </div>
     </div>

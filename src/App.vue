@@ -1,18 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { RouterView, RouterLink, useRouter } from 'vue-router'
-import CartButton from './components/CartButton.vue'
-
-const loading = ref(false)
-
-const router = useRouter()
-router.beforeEach(() => {
-  loading.value = true
-})
-
-router.afterEach(() => {
-  loading.value = false
-})
+import { RouterView, RouterLink } from 'vue-router'
 </script>
 
 <template>
@@ -22,9 +9,15 @@ router.afterEach(() => {
     <RouterLink class="mx-auto" :to="{ name: 'home' }">
       <h1 class="text-4xl font-bold uppercase">Cool Shop</h1>
     </RouterLink>
-    <CartButton :count="2" class="fixed top-0" />
   </header>
   <main>
+    <!-- <div
+      v-show="showCart"
+      @click.exact="showCart = !showCart"
+      class="h-full fixed inset-0 z-20"
+      :class="showCart ? 'bg-neutral-900/20' : 'bg-neutral-900/0'"
+    > -->
+    <!-- </div> -->
     <RouterView :key="$route.params.id?.toString()" />
   </main>
   <footer class="text-white bg-black p-5">PLEASE HIRE ME</footer>

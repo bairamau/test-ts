@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import QuantityCounter from '@/components/QuantityCounter.vue'
 import type { Product } from '@/services/ecwid'
-defineProps<{ id: string; product: Product }>()
+defineProps<{
+  id: string
+  product: Product
+  addProduct: (id: number, quantity: number) => void
+}>()
 const quantity = ref(1)
 </script>
 
@@ -19,16 +24,20 @@ const quantity = ref(1)
         <div class="text-lg" v-html="product.description"></div>
       </div>
       <div class="flex justify-between items-center mt-auto">
-        <div class="text-lg flex">
-          <button class="p-4" @click="quantity > 1 ? (quantity -= 1) : quantity">—</button>
-          <div class="py-4 min-w-16 flex justify-between">
-            <span>QTY:</span><span>{{ quantity }}</span>
-          </div>
-          <button class="p-4" @click="quantity += 1">+</button>
-        </div>
+        <QuantityCounter
+          :quantity
+          @dec="quantity > 1 ? (quantity -= 1) : quantity"
+          @inc="quantity += 1"
+        />
         <span class="text-lg">{{ (quantity * product.price).toFixed(2) }} ₽</span>
       </div>
       <button
+        @click="
+          () => {
+            addProduct(product.id, quantity)
+            quantity = 1
+          }
+        "
         class="text-white hover:text-black duration-150 p-2 bg-black hover:bg-accent-primary border rounded uppercase border-neutral-950"
       >
         Add to cart

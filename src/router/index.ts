@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views//HomeView.vue'
 import ProductView from '@/views/ProductView.vue'
 import CategoryView from '@/views/CategoryView.vue'
+import CartView from '@/views/CartView.vue'
 import { getProducts, getCategories, getProductById } from '@/services/ecwid'
 
 const router = createRouter({
@@ -9,6 +10,12 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      component: CartView,
+      props: (route) => {
+        return {
+          products: route.meta.products
+        }
+      },
       beforeEnter: async (to) => {
         const [products, categories] = await Promise.all([getProducts(), getCategories()])
         to.meta.products = products
@@ -30,7 +37,6 @@ const router = createRouter({
           path: '/category/:id',
           name: 'category',
           props: (route) => {
-            console.log(route.params.id)
             return {
               id: route.params.id,
               products: route.meta.products,
@@ -38,21 +44,21 @@ const router = createRouter({
             }
           },
           component: CategoryView
+        },
+        {
+          path: '/product/:id',
+          name: 'product',
+          props: (route) => ({
+            id: route.params.id,
+            product: route.meta.product
+          }),
+          component: ProductView,
+          beforeEnter: async (to) => {
+            if (typeof to.params.id !== 'string') throw new Error('repeated id param')
+            to.meta.product = await getProductById(to.params.id)
+          }
         }
       ]
-    },
-    {
-      path: '/product/:id',
-      name: 'product',
-      props: (route) => ({
-        id: route.params.id,
-        product: route.meta.product
-      }),
-      component: ProductView,
-      beforeEnter: async (to) => {
-        if (typeof to.params.id !== 'string') throw new Error('repeated id param')
-        to.meta.product = await getProductById(to.params.id)
-      }
     }
   ]
 })
