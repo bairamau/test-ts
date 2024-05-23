@@ -1,14 +1,13 @@
 const headers = new Headers({
   Accept: 'application/json',
-  Authorization: `Bearer ${import.meta.env.VITE_ECWID_AUTH_TOKEN}`,
-  'Cache-Control': 'max-stale=20'
+  Authorization: `Bearer ${import.meta.env.VITE_ECWID_AUTH_TOKEN}`
 })
 
 export const getProducts = async (categoryId?: string): Promise<ProductsItem[]> => {
   const params = new URLSearchParams({
     ...(categoryId && { category: categoryId }),
     responseFields:
-      'items(id,name,price,defaultDisplayedPriceFormatted,categoryIds,media(images(id,image400pxUrl,isMain)))'
+      'items(id,name,price,defaultDisplayedPriceFormatted,categoryIds,media(images(id,image400pxUrl,image800pxUrl,image1500pxUrl,isMain)))'
   }).toString()
 
   const request = new Request(`${import.meta.env.VITE_STORE_API_URL}/products?${params}`, {
@@ -28,7 +27,7 @@ export const getProducts = async (categoryId?: string): Promise<ProductsItem[]> 
 export const getProductById = async (id: string | number): Promise<Product> => {
   const params = new URLSearchParams({
     responseFields:
-      'id,name,description,price,defaultDisplayedPriceFormatted,media(images(id,image400pxUrl,image1500pxUrl))'
+      'id,name,description,price,defaultDisplayedPriceFormatted,media(images(id,image400pxUrl,image800pxUrl,image1500pxUrl))'
   }).toString()
 
   const request = new Request(`${import.meta.env.VITE_STORE_API_URL}/products/${id}?${params}`, {
@@ -65,25 +64,6 @@ export const getCategories = async (): Promise<CategoriesItem[]> => {
   return data.items
 }
 
-export const getCategoryById = async (id: string | number) => {
-  const params = new URLSearchParams({
-    responseFields: 'count,items(id,quantity,media(images),price,name)'
-  }).toString()
-
-  const request = new Request(`${import.meta.env.VITE_STORE_API_URL}/categories/${id}?${params}`, {
-    headers
-  })
-
-  const response = await fetch(request)
-  const data = await response.json()
-
-  if (!response.ok) {
-    throw new Error(data)
-  }
-
-  return data
-}
-
 export interface ProductsItem {
   id: number
   name: string
@@ -93,11 +73,9 @@ export interface ProductsItem {
   media: {
     images: Array<{
       id: string
-      // image160pxUrl: string
       image400pxUrl: string
-      // image800pxUrl: string
+      image800pxUrl: string
       image1500pxUrl: string
-      // imageOriginalUrl: string
       isMain: boolean
     }>
   }

@@ -18,7 +18,6 @@
   }
 
   html {
-    /* replace with apply */
     @apply font-sans;
   }
 

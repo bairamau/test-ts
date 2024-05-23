@@ -9,11 +9,11 @@ let animation: Animation
 router.beforeEach(() => {
   if (!progress.value) return
   animation = progress.value.animate(keyframes, {
-    duration: 3000,
+    duration: 4000,
     delay: 50,
     easing: 'cubic-bezier(.2,.98,.19,1.01)'
   })
-})
+}) 
 
 router.afterEach(() => {
   animation.finish()

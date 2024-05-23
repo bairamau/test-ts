@@ -40,13 +40,13 @@ const showCart = ref(false)
 <template>
   <CartButton @click="showCart = !showCart" :count="items" class="fixed top-8 right-8 z-30" />
   <section
-    class="py-5 md:py-10 px-4 md:px-8 max-h-full gap-4 overflow-auto flex flex-col fixed z-30 w-[480px] max-w-full bg-background-primary/30 backdrop-blur-2xl h-full top-0 duration-200 lg:duration-500 ease-out"
+    class="py-5 md:py-7 px-4 md:px-8 max-h-full gap-4 overflow-auto flex flex-col fixed z-30 w-[480px] max-w-full bg-background-primary/30 backdrop-blur-2xl h-full top-0 duration-200 lg:duration-500 ease-out"
     :class="showCart ? 'right-0' : '-right-[100%]'"
   >
     <div class="flex items-center">
       <h3 class="uppercase text-2xl font-bold pr-4 leading-none">Cart</h3>
       <CartMeter :count="items" />
-      <button class="ml-auto text-4xl p-3 md:p-5" @click="showCart = !showCart">×</button>
+      <button class="ml-auto text-4xl p-3" @click="showCart = !showCart">×</button>
     </div>
     <div
       v-for="p in products.filter((p) => cartData[p.id] > 0)"

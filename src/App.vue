@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { RouterView, RouterLink } from 'vue-router'
 import CircleText from '@/components/CircleText.vue'
+import LoadProgress from './components/LoadProgress.vue'
 </script>
 
 <template>
+  <LoadProgress />
   <header
-    class="px-5 flex sticky top-0 z-10 bg-background-primary/35 h-14 backdrop-blur-lg border-b border-gray-950 items-center"
+    class="px-5 flex sticky top-0 z-10 bg-background-primary/35 h-14 backdrop-blur-2xl border-b border-gray-950 items-center"
   >
     <RouterLink class="mx-auto" :to="{ name: 'home' }">
       <h1 class="text-4xl font-bold uppercase">Cool Shop</h1>
