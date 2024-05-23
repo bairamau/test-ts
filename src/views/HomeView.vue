@@ -29,16 +29,15 @@ const rootCategories = props.categories.filter((c) => !Object.hasOwn(c, 'parentI
       >
     </p>
   </div>
-  <div
-    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-12 mx-4 lg:mx-8 mb-8"
-  >
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-12 mx-4 lg:mx-8 mb-8">
     <ProductCard
       v-for="p in products"
       :key="p.id"
       :id="p.id"
       :title="p.name"
       :price="p.price"
-      :src="p.media.images[0].image400pxUrl"
+      :src1="p.media.images[0].image400pxUrl"
+      :src2="p.media.images[1].image400pxUrl"
       @add="addProduct(p.id, 1)"
     />
   </div>

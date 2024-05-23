@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { reactive, ref, watch } from 'vue'
+import { computed, reactive, ref, watch } from 'vue'
 import CartButton from '@/components/CartButton.vue'
 import type { ProductsItem } from '@/services/ecwid'
 import QuantityCounter from '@/components/QuantityCounter.vue'
+import CartMeter from '@/components/CartMeter.vue'
 
-defineProps<{ products: ProductsItem[] }>()
+const props = defineProps<{ products: ProductsItem[] }>()
 
 let cart = localStorage.getItem('cart')
 if (cart === null) {
@@ -22,26 +23,29 @@ const subtractProduct = (id: number) => {
 }
 
 watch(cartData, () => {
-  console.log('effect')
   localStorage.setItem('cart', JSON.stringify(cartData))
 })
+
+const items = computed(() => Object.values(cartData).reduce((q, s) => q + s, 0))
+const subtotal = computed(() =>
+  Object.keys(cartData).reduce(
+    (acc, k) => cartData[k] * props.products.find((p) => p.id === Number(k))!.price + acc,
+    0
+  )
+)
 
 const showCart = ref(false)
 </script>
 
 <template>
-  <CartButton @click="showCart = !showCart" :count="2" class="fixed top-8 right-8 z-30" />
+  <CartButton @click="showCart = !showCart" :count="items" class="fixed top-8 right-8 z-30" />
   <section
     class="py-10 px-8 max-h-full overflow-auto flex flex-col fixed z-30 w-[480px] max-w-full bg-background-primary/30 backdrop-blur-2xl h-full top-0 duration-200 lg:duration-500 ease-out"
     :class="showCart ? 'right-0' : '-right-[100%]'"
   >
     <div class="flex items-center">
       <h3 class="uppercase text-2xl font-bold pr-4 leading-none">Cart</h3>
-      <div
-        class="grid place-items-center bg-black text-sm text-white size-7 min-w-min font-bold px-1 leading-none rounded-full"
-      >
-        {{ Object.values(cartData).reduce((q, s) => q + s, 0) }}
-      </div>
+      <CartMeter :count="items" />
       <button class="ml-auto text-4xl p-5" @click="showCart = !showCart">×</button>
     </div>
     <div
@@ -66,17 +70,7 @@ const showCart = ref(false)
     </div>
     <p class="flex justify-between mt-auto mb-4 text-xl items-end">
       Subtotal
-      <span class="text-2xl">
-        {{
-          Object.keys(cartData)
-            .reduce(
-              (acc, k) => cartData[k] * products.find((p) => p.id === Number(k))!.price + acc,
-              0
-            )
-            .toFixed(2)
-        }}
-        ₽
-      </span>
+      <span class="text-2xl"> {{ subtotal.toFixed(2) }} ₽ </span>
     </p>
     <button
       class="text-white hover:text-black duration-150 p-2 bg-black hover:bg-accent-primary border rounded uppercase border-neutral-950"

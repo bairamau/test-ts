@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import CartMeter from './CartMeter.vue'
 defineProps<{ count: number }>()
 </script>
 
@@ -7,6 +8,7 @@ defineProps<{ count: number }>()
     class="size-11 border border-neutral-950 hover:ease-out duration-150 rounded-full bg-background-primary hover:bg-accent-primary"
   >
     <div class="relatve size-full">
+      <CartMeter v-show="count" :count class="absolute -top-1/4 -right-1/4 scale-75"/>
       <svg class="w-1/2 absolute inset-0 m-auto" viewBox="0 0 14 16">
         <path
           fill="currentColor"

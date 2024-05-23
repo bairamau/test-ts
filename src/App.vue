@@ -10,7 +10,7 @@ import { RouterView, RouterLink } from 'vue-router'
       <h1 class="text-4xl font-bold uppercase">Cool Shop</h1>
     </RouterLink>
   </header>
-  <main>
+  <main class="min-h-[calc(100dvh-3rem)]">
     <!-- <div
       v-show="showCart"
       @click.exact="showCart = !showCart"
@@ -20,5 +20,10 @@ import { RouterView, RouterLink } from 'vue-router'
     <!-- </div> -->
     <RouterView :key="$route.params.id?.toString()" />
   </main>
-  <footer class="text-white bg-black p-5">PLEASE HIRE ME</footer>
+  <footer class="text-white bg-black py-10 px-8">
+    <p class="text-7xl font-bold uppercase">Cool shop</p>
+    <p class="text-2xl pt-8 max-w-80">
+      Edited collections by Kanye West and special guest collaborators (surely)
+    </p>
+  </footer>
 </template>

@@ -43,7 +43,8 @@ const relevantProducts = props.products.filter((p) => p.categoryIds.includes(cat
           :id="p.id"
           :title="p.name"
           :price="p.price"
-          :src="p.media.images[0].image400pxUrl"
+          :src1="p.media.images[0].image400pxUrl"
+          :src2="p.media.images[1].image400pxUrl"
           @add="addProduct(p.id, 1)"
         />
       </div>
