@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { RouterView, RouterLink } from 'vue-router'
+import LoadProgress from '@/components/LoadProgress.vue'
 </script>
 
 <template>
+  <LoadProgress />
   <header
     class="px-5 flex sticky top-0 z-10 bg-background-primary/35 h-14 backdrop-blur-lg border-b border-gray-950 items-center"
   >
@@ -10,14 +12,7 @@ import { RouterView, RouterLink } from 'vue-router'
       <h1 class="text-4xl font-bold uppercase">Cool Shop</h1>
     </RouterLink>
   </header>
-  <main class="min-h-[calc(100dvh-3rem)]">
-    <!-- <div
-      v-show="showCart"
-      @click.exact="showCart = !showCart"
-      class="h-full fixed inset-0 z-20"
-      :class="showCart ? 'bg-neutral-900/20' : 'bg-neutral-900/0'"
-    > -->
-    <!-- </div> -->
+  <main class="min-h-[calc(100dvh-3.5rem)]">
     <RouterView :key="$route.params.id?.toString()" />
   </main>
   <footer class="text-white bg-black py-10 px-8">
