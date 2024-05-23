@@ -13,8 +13,11 @@ const rootCategories = props.categories.filter((c) => !Object.hasOwn(c, 'parentI
 </script>
 
 <template>
-  <div class="grid gap-4 grid-cols-2 xl:grid-cols-6 grid-gap px-4 lg:px-6 mt-6">
+  <div
+    class="md:max-w-screen-md flex gap-5 overflow-x-auto md:overflow-x-hidden mx-5 md:mx-auto mt-10 [scroll-snap-stop:always] [scroll-snap-type:x_mandatory] [scrollbar-width:none]"
+  >
     <CategoryCard
+      class="min-w-64 md:min-w-0 [scroll-snap-align:start]"
       v-for="c in rootCategories"
       :key="c.id"
       :title="c.name"
@@ -29,7 +32,7 @@ const rootCategories = props.categories.filter((c) => !Object.hasOwn(c, 'parentI
       >
     </p>
   </div>
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-12 mx-4 lg:mx-8 mb-8">
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-5 md:gap-12 mx-4 lg:mx-8 mb-8">
     <ProductCard
       v-for="p in products"
       :key="p.id"
