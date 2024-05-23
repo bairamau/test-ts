@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme'
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts}'],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Futura', ...defaultTheme.fontFamily.sans]
+      },
       colors: {
         black: '#181616',
         'background-primary': 'rgb(246, 245, 238)',
@@ -15,7 +19,8 @@ export default {
         }
       },
       animation: {
-        marquee: 'marquee 32s infinite linear'
+        marquee: 'marquee 32s infinite linear',
+        'spin-slow': 'spin 15s linear infinite reverse'
       }
     }
   },

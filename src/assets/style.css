@@ -19,7 +19,7 @@
 
   html {
     /* replace with apply */
-    font-family: 'Futura', system-ui, sans-serif;
+    @apply font-sans;
   }
 
   html,
