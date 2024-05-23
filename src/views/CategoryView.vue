@@ -13,13 +13,13 @@ const subCategories = props.categories.filter((c) => c.parentId === category.id)
 const relevantProducts = props.products.filter((p) => p.categoryIds.includes(category.id))
 </script>
 <template :key="props.id">
-  <h2 class="py-14 text-6xl font-bold text-center uppercase border-b border-neutral-950">
+  <h2 class="py-14 text-4xl md:text-6xl font-bold text-center uppercase border-b border-neutral-950">
     {{ category.name }}
   </h2>
   <div class="flex flex-col-reverse lg:flex-row">
     <div
       :class="subCategories.length > 0 ? 'flex' : 'hidden'"
-      class="flex-col p-5 border-r border-neutral-950 flex-[2]"
+      class="flex-col p-4 border-t lg:border-t-0 lg:border-r border-neutral-950 flex-[2]"
     >
       <p class="text-xl uppercase pb-5">Explore subcategories of {{ category.name }}</p>
       <div class="grid grid-cols-2 gap-4">
@@ -32,7 +32,7 @@ const relevantProducts = props.products.filter((p) => p.categoryIds.includes(cat
         />
       </div>
     </div>
-    <div class="flex-[3] p-5 flex flex-col">
+    <div class="flex-[3] p-4 flex flex-col">
       <p class="ml-auto text-xl uppercase pb-5">
         {{ relevantProducts.length }} product{{ relevantProducts.length !== 1 ? 's' : null }}
       </p>

@@ -12,16 +12,16 @@ const quantity = ref(1)
 
 <template>
   <div class="h-[calc(100dvh-3.5rem)] flex">
-    <div class="w-1/2 h-full">
+    <div class="hidden md:block w-1/2 h-full">
       <img class="w-full h-full object-cover" :src="product.media.images[0].image400pxUrl" />
     </div>
-    <div class="w-1/2 h-full backdrop-blur-md p-11 flex flex-col">
+    <div class="w-full md:w-1/2 h-full backdrop-blur-md p-4 md:p-11 flex flex-col">
       <div>
         <h2 class="text-3xl font-bold pb-10 mb-5 border-b border-neutral-950">
           {{ product.name }}
         </h2>
         <p class="text-lg uppercase underline tracking-wide pb-3">Description</p>
-        <div class="text-lg" v-html="product.description"></div>
+        <div class="lg:text-lg" v-html="product.description"></div>
       </div>
       <div class="flex justify-between items-center mt-auto">
         <QuantityCounter

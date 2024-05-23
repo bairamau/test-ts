@@ -25,7 +25,7 @@ defineProps<{
       </div>
     </RouterLink>
     <button
-      @click="$emit('add')"
+      @click="$emit('add', 1)"
       class="hover:ease-out duration-150 hover:bg-accent-primary h-11 mt-auto w-full border border-neutral-950 rounded uppercase"
     >
       Add to cart

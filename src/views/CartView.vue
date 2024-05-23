@@ -32,7 +32,7 @@ const showCart = ref(false)
 <template>
   <CartButton @click="showCart = !showCart" :count="2" class="fixed top-8 right-8 z-30" />
   <section
-    class="py-10 px-8 max-h-full overflow-auto flex flex-col fixed z-30 w-[480px] max-w-full bg-background-primary/30 backdrop-blur-2xl h-full top-0 duration-500 ease-out"
+    class="py-10 px-8 max-h-full overflow-auto flex flex-col fixed z-30 w-[480px] max-w-full bg-background-primary/30 backdrop-blur-2xl h-full top-0 duration-200 lg:duration-500 ease-out"
     :class="showCart ? 'right-0' : '-right-[100%]'"
   >
     <div class="flex items-center">

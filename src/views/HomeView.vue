@@ -13,7 +13,7 @@ const rootCategories = props.categories.filter((c) => !Object.hasOwn(c, 'parentI
 </script>
 
 <template>
-  <div class="grid gap-4 grid-cols-3 xl:grid-cols-6 grid-gap px-6 mt-6">
+  <div class="grid gap-4 grid-cols-2 xl:grid-cols-6 grid-gap px-4 lg:px-6 mt-6">
     <CategoryCard
       v-for="c in rootCategories"
       :key="c.id"
@@ -30,7 +30,7 @@ const rootCategories = props.categories.filter((c) => !Object.hasOwn(c, 'parentI
     </p>
   </div>
   <div
-    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-12 mx-4 lg:mx-8 container"
+    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-12 mx-4 lg:mx-8 mb-8"
   >
     <ProductCard
       v-for="p in products"
