@@ -17,7 +17,7 @@ const rootCategories = props.categories.filter((c) => !Object.hasOwn(c, 'parentI
     class="mx-5 mt-10 flex gap-5 overflow-x-auto [scroll-snap-stop:always] [scroll-snap-type:x_mandatory] [scrollbar-width:none] md:mx-auto md:max-w-screen-md md:overflow-x-hidden"
   >
     <CategoryCard
-      class="min-w-64 [scroll-snap-align:start] md:min-w-0"
+      class="min-w-64 flex-1 [scroll-snap-align:start] md:min-w-0"
       v-for="c in rootCategories"
       :key="c.id"
       :title="c.name"

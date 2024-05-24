@@ -13,7 +13,11 @@ if (cart === null) {
   cart = '{}'
 }
 
-const cartData = reactive<{ [id: number | string]: number }>(JSON.parse(cart))
+let cartData = reactive<{ [id: number | string]: number }>(JSON.parse(cart))
+
+const removeProduct = (id: number) => {
+  cartData[id] = 0
+}
 
 const addProduct = (id: number, quantity: number) => {
   cartData[id] = (cartData[id] ?? 0) + quantity
@@ -34,6 +38,16 @@ const subtotal = computed(() =>
   )
 )
 
+const handlePlaceOrder = () => {
+  success.value = true
+  showCart.value = false
+  for (var key in cartData) {
+    if (Object.hasOwn(cartData, key)) {
+      delete cartData[key]
+    }
+  }
+}
+const success = ref(false)
 const showCart = ref(false)
 </script>
 
@@ -64,20 +78,30 @@ const showCart = ref(false)
         @dec="subtractProduct(p.id)"
         @inc="addProduct(p.id, 1)"
       />
+      <button @click="removeProduct(p.id)" class="text-xs underline">Remove</button>
       <span class="row-start-2 place-content-center">
         {{ (cartData[p.id] * p.price).toFixed(2) }} ₽
       </span>
     </div>
-    <p class="mb-4 mt-auto flex items-end justify-between text-xl">
+    <p v-show="subtotal > 0" class="mb-4 mt-auto flex items-end justify-between text-xl">
       Subtotal
       <span class="text-2xl"> {{ subtotal.toFixed(2) }} ₽ </span>
     </p>
     <button
+      v-show="subtotal > 0"
+      @click="handlePlaceOrder"
       class="rounded border border-neutral-950 bg-black p-2 uppercase text-white duration-150 hover:bg-accent-primary hover:text-black"
     >
-      Checkout
+      Place order
     </button>
   </section>
+  <div
+    v-if="success"
+    @click="success = false"
+    class="fixed inset-0 z-50 grid place-items-center bg-background-primary text-9xl font-bold uppercase"
+  >
+    Nice
+  </div>
   <RouterView v-slot="{ Component }">
     <component :is="Component" :addProduct="addProduct" />
   </RouterView>
