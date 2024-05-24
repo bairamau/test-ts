@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 group relative">
+  <div class="group relative flex flex-col gap-4">
     <RouterLink
       :to="{
         name: 'product',
@@ -21,21 +21,21 @@ defineProps<{
     >
       <img
         :src="src1"
-        class="absolute group-hover:opacity-0 duration-150 w-full aspect-[3/4] object-cover border border-neutral-950 rounded"
+        class="absolute aspect-[3/4] w-full rounded border border-neutral-950 object-cover duration-150 group-hover:opacity-0"
       />
       <img
         v-if="src2"
         :src="src2"
-        class="w-full opacity-0 group-hover:opacity-100 duration-150 aspect-[3/4] object-cover border border-neutral-950 rounded"
+        class="aspect-[3/4] w-full rounded border border-neutral-950 object-cover opacity-0 duration-150 group-hover:opacity-100"
       />
-      <div class="sm:text-lg uppercase font-bold flex gap-2 mt-4">
+      <div class="mt-4 flex gap-2 font-bold uppercase sm:text-lg">
         <p class="flex-1">{{ title }}</p>
         <span>{{ price }} ₽</span>
       </div>
     </RouterLink>
     <button
       @click="$emit('add', 1)"
-      class="hover:ease-out duration-150 hover:bg-accent-primary h-11 mt-auto w-full border border-neutral-950 rounded uppercase"
+      class="mt-auto h-11 w-full rounded border border-neutral-950 uppercase duration-150 hover:bg-accent-primary hover:ease-out"
     >
       Add to cart
     </button>

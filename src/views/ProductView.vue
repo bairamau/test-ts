@@ -20,43 +20,43 @@ const swipe = (dir: 'left' | 'right') => {
 </script>
 
 <template>
-  <div class="lg:h-[calc(100dvh-3.5rem)] relative grid lg:block">
+  <div class="relative grid lg:block lg:h-[calc(100dvh-3.5rem)]">
     <div
       ref="list"
-      class="h-80 lg:h-full flex overflow-x-scroll [scroll-snap-stop:always] [scroll-snap-type:x_mandatory] [scrollbar-width:none]"
+      class="flex h-80 overflow-x-scroll [scroll-snap-stop:always] [scroll-snap-type:x_mandatory] [scrollbar-width:none] lg:h-full"
     >
       <div
-        class="h-full min-w-full lg:min-w-[50%] [scroll-snap-align:start]"
+        class="h-full min-w-full [scroll-snap-align:start] lg:min-w-[50%]"
         v-for="img in product.media.images"
         :key="img.id"
       >
-        <img class="w-full h-full object-cover" :src="img.image800pxUrl" />
+        <img class="h-full w-full object-cover" :src="img.image800pxUrl" />
       </div>
-      <div class="hidden lg:block h-full min-w-[50%] [scroll-snap-align:start]"></div>
+      <div class="hidden h-full min-w-[50%] [scroll-snap-align:start] lg:block"></div>
     </div>
     <button
-      class="absolute border top-32 left-2 lg:left-4 border-neutral-950 bg-background-primary size-12 opacity-40 rounded-full lg:inset-y-0 lg:my-auto"
+      class="absolute left-2 top-32 size-12 rounded-full border border-neutral-950 bg-background-primary opacity-40 lg:inset-y-0 lg:left-4 lg:my-auto"
       @click="swipe('left')"
     >
       PREV
     </button>
     <button
-      class="absolute top-32 right-2 lg:left-1/2 lg:right-4 lg:-translate-x-16 border border-neutral-950 bg-background-primary size-12 opacity-40 rounded-full lg:inset-y-0 lg:my-auto"
+      class="absolute right-2 top-32 size-12 rounded-full border border-neutral-950 bg-background-primary opacity-40 lg:inset-y-0 lg:left-1/2 lg:right-4 lg:my-auto lg:-translate-x-16"
       @click="swipe('right')"
     >
       NEXT
     </button>
     <div
-      class="lg:absolute lg:top-0 lg:right-0 w-full lg:w-1/2 h-full bg-background-primary/50 backdrop-blur-2xl p-4 lg:p-11 flex flex-col"
+      class="flex h-full w-full flex-col bg-background-primary/50 p-4 backdrop-blur-2xl lg:absolute lg:right-0 lg:top-0 lg:w-1/2 lg:p-11"
     >
       <div>
-        <h2 class="text-3xl font-bold pb-10 mb-5 border-b border-neutral-950">
+        <h2 class="mb-5 border-b border-neutral-950 pb-10 text-3xl font-bold">
           {{ product.name }}
         </h2>
-        <p class="text-lg uppercase underline tracking-wide pb-3">Description</p>
+        <p class="pb-3 text-lg uppercase tracking-wide underline">Description</p>
         <div class="lg:text-lg" v-html="product.description"></div>
       </div>
-      <div class="flex justify-between items-center mt-auto">
+      <div class="mt-auto flex items-center justify-between">
         <QuantityCounter
           :quantity
           @dec="quantity > 1 ? (quantity -= 1) : quantity"
@@ -71,7 +71,7 @@ const swipe = (dir: 'left' | 'right') => {
             quantity = 1
           }
         "
-        class="text-white hover:text-black duration-150 p-2 bg-black hover:bg-accent-primary border rounded uppercase border-neutral-950"
+        class="rounded border border-neutral-950 bg-black p-2 uppercase text-white duration-150 hover:bg-accent-primary hover:text-black"
       >
         Add to cart
       </button>

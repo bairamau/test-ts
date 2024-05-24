@@ -7,7 +7,7 @@ import LoadProgress from './components/LoadProgress.vue'
 <template>
   <LoadProgress />
   <header
-    class="px-5 flex sticky top-0 z-10 bg-background-primary/35 h-14 backdrop-blur-2xl border-b border-gray-950 items-center"
+    class="sticky top-0 z-10 flex h-14 items-center border-b border-gray-950 bg-background-primary/35 px-5 backdrop-blur-2xl"
   >
     <RouterLink class="mx-auto" :to="{ name: 'home' }">
       <h1 class="text-4xl font-bold uppercase">Cool Shop</h1>
@@ -16,10 +16,10 @@ import LoadProgress from './components/LoadProgress.vue'
   <main class="min-h-[calc(100dvh-3.5rem)]">
     <RouterView :key="$route.params.id?.toString()" />
   </main>
-  <footer class="text-white overflow-hidden relative bg-black py-10 px-8 flex flex-wrap gap-10">
+  <footer class="relative flex flex-wrap gap-10 overflow-hidden bg-black px-8 py-10 text-white">
     <div>
       <p class="text-7xl font-bold uppercase">Cool shop</p>
-      <p class="text-2xl pt-8 max-w-80">
+      <p class="max-w-80 pt-8 text-2xl">
         Edited collections by Kanye West and special guest collaborators (surely)
       </p>
     </div>
@@ -38,7 +38,7 @@ import LoadProgress from './components/LoadProgress.vue'
       <p>These</p>
     </div>
     <CircleText
-      class="hidden animate-spin-slow md:block h-[calc(100%-3rem)] absolute top-0 bottom-0 my-auto -right-40"
+      class="absolute -right-40 bottom-0 top-0 my-auto hidden h-[calc(100%-3rem)] animate-spin-slow md:block"
     />
   </footer>
 </template>

@@ -14,10 +14,10 @@ const rootCategories = props.categories.filter((c) => !Object.hasOwn(c, 'parentI
 
 <template>
   <div
-    class="md:max-w-screen-md flex gap-5 overflow-x-auto md:overflow-x-hidden mx-5 md:mx-auto mt-10 [scroll-snap-stop:always] [scroll-snap-type:x_mandatory] [scrollbar-width:none]"
+    class="mx-5 mt-10 flex gap-5 overflow-x-auto [scroll-snap-stop:always] [scroll-snap-type:x_mandatory] [scrollbar-width:none] md:mx-auto md:max-w-screen-md md:overflow-x-hidden"
   >
     <CategoryCard
-      class="min-w-64 md:min-w-0 [scroll-snap-align:start]"
+      class="min-w-64 [scroll-snap-align:start] md:min-w-0"
       v-for="c in rootCategories"
       :key="c.id"
       :title="c.name"
@@ -25,14 +25,16 @@ const rootCategories = props.categories.filter((c) => !Object.hasOwn(c, 'parentI
       :id="c.id"
     />
   </div>
-  <div class="py-12 overflow-hidden">
-    <p class="inline-block whitespace-nowrap animate-marquee text-7xl font-bold uppercase">
+  <div class="overflow-hidden py-12">
+    <p class="inline-block animate-marquee whitespace-nowrap text-7xl font-bold uppercase">
       <span v-for="i in 2" :key="i" class="w-1/2 pl-12"
         >Very. Inspirational. Quote. That. Will. Increase. Conversion.</span
       >
     </p>
   </div>
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-5 md:gap-12 mx-4 lg:mx-8 mb-8">
+  <div
+    class="mx-4 mb-8 grid grid-cols-2 gap-x-2 gap-y-5 md:grid-cols-3 md:gap-12 lg:mx-8 lg:grid-cols-4"
+  >
     <ProductCard
       v-for="p in products"
       :key="p.id"

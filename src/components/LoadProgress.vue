@@ -13,12 +13,12 @@ router.beforeEach(() => {
     delay: 50,
     easing: 'cubic-bezier(.2,.98,.19,1.01)'
   })
-}) 
+})
 
 router.afterEach(() => {
   animation.finish()
 })
 </script>
 <template>
-  <div ref="progress" class="h-1.5 fixed top-0 z-40 bg-accent-primary"></div>
+  <div ref="progress" class="fixed top-0 z-40 h-1.5 bg-accent-primary"></div>
 </template>

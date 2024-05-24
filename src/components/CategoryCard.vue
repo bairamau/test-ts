@@ -4,11 +4,11 @@ defineProps<{ title: string; src: string; id: number }>()
 </script>
 <template>
   <RouterLink :to="{ name: 'category', params: { id } }" class="group">
-    <div class="border border-neutral-950 rounded">
-      <h3 class="text-xl lg:text-2xl font-bold p-2 md:p-5 uppercase">{{ title }}</h3>
-      <img :src class="w-full border-y border-neutral-950 object-cover aspect-square" />
+    <div class="rounded border border-neutral-950">
+      <h3 class="p-2 text-xl font-bold uppercase md:p-5 lg:text-2xl">{{ title }}</h3>
+      <img :src class="aspect-square w-full border-y border-neutral-950 object-cover" />
       <p
-        class="text-sm uppercase group-hover:bg-accent-primary h-12 flex justify-center items-center hover:ease-out duration-150"
+        class="flex h-12 items-center justify-center text-sm uppercase duration-150 hover:ease-out group-hover:bg-accent-primary"
       >
         Shop {{ title }}
       </p>

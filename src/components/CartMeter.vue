@@ -3,7 +3,7 @@ defineProps<{ count: number }>()
 </script>
 <template>
   <div
-    class="grid place-items-center bg-black text-sm text-white size-7 min-w-min font-bold px-1 leading-none rounded-full"
+    class="grid size-7 min-w-min place-items-center rounded-full bg-black px-1 text-sm font-bold leading-none text-white"
   >
     {{ count }}
   </div>
